@@ -13,7 +13,7 @@ import java.util.List;
 
 public class SunmiInnerScannerPackage implements ReactPackage {
 
-    @Override
+    // @Override
     public List<Class<? extends JavaScriptModule>> createJSModules() {
         return Collections.emptyList();
     }

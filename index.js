@@ -1,5 +1,9 @@
-import React,{Component,PropTypes} from 'react';
-import { NativeModules,
+import React, {
+    Component
+} from 'react';
+import PropTypes from 'prop-types';
+import {
+    NativeModules,
     requireNativeComponent,
     View,
     DeviceEventEmitter
@@ -10,11 +14,11 @@ export default SunmiInnerScanner;
 export class SunmiScannerView extends Component {
 
     componentWillMount() {
-        if (this.props.onCodeScan){
+        if (this.props.onCodeScan) {
             this.cameraBarCodeReadListener = DeviceEventEmitter.addListener('SunmiInnerScannerView.RESULT',
-                (data)=> {
-                this.props.onCodeScan(data.result || []);
-            });
+                (data) => {
+                    this.props.onCodeScan(data.result || []);
+                });
         }
     }
 
@@ -39,11 +43,11 @@ export class SunmiScannerView extends Component {
             PropTypes.string,
             PropTypes.number
         ]),
-        onCodeScan: React.PropTypes.func,
-        scanInterval:PropTypes.oneOfType([
+        onCodeScan: PropTypes.func,
+        scanInterval: PropTypes.oneOfType([
             PropTypes.number
         ]),
-        mute:PropTypes.oneOfType([
+        mute: PropTypes.oneOfType([
             PropTypes.number
         ])
     };
@@ -52,15 +56,17 @@ export class SunmiScannerView extends Component {
         yDensity: 2,
         mutilScanEnable: 0,
         inverseEnable: 1,
-        onCodeScan: function (result) {
+        onCodeScan: function(result) {
             console.log(result);
         },
-        scanInterval:1000,
-        mute:0
+        scanInterval: 1000,
+        mute: 0
     }
 
     render() {
-        return <SunmiScanner {...this.props} />;
+        return <SunmiScanner { ...this.props
+        }
+        />;
     }
 }
 const SunmiScanner = requireNativeComponent('SunmiScanner', SunmiScannerView);
